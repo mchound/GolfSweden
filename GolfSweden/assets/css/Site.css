@@ -1,0 +1,328 @@
+﻿body {
+    background-color: #000000;
+    background-image: url('../img/bg_main.jpg');
+    margin: 0;
+}
+
+h1 {        
+    margin: 0px;
+    font-size: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+    font-weight: bold;
+}
+
+h2 {
+    margin: 0px;
+    font-size: 16px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+    font-weight: bold;
+}
+
+select {
+    padding:5px;
+    font: normal 14px Segoe UI;
+    background-color: #fcfcfc;
+    border: 1px solid #e1e1e1;
+    color: #8D8D8D;
+}
+
+/*------------- Button---------------------*/
+button {
+    font: normal 16px Segoe UI;
+    color: white;
+    background-image: url('../img/buttonFade.png');
+    background-repeat: no-repeat;
+    padding: 5px;
+    font-weight: normal;
+}
+
+.greenBtn {
+    background-color: #23AC23;
+    border: 1px solid #23AC23;
+}
+
+.greenBtn:hover {
+    background-color: green;
+}
+
+/* ----------------- The rest --------------------*/
+.page {
+    width: 960px;
+    margin: 0 auto;
+    height: auto;
+}
+
+.contentContainer {
+    height: 400px;
+    width: 630px;    
+    float: left;
+    margin-right: 10px;
+}
+
+.rightContainer {
+    height: 400px;
+    width: 310px;
+    float: left;
+    margin-left: 10px;
+    padding-top: 10px;
+}
+
+#navigation ul {
+    height: 60px;
+    list-style: none;
+    padding: 0;
+    margin: 0px;
+    margin-left: -10px;
+    float: left;
+}
+
+    #navigation ul li {
+        float: left;                  
+    }
+
+    #navigation ul li a img:nth-child(1){
+        opacity: 0.5;
+        float: left;        
+        border: none;
+    }
+
+        #navigation ul li a.current img:nth-child(1), #navigation ul li a:hover img:nth-child(1)  {
+            background: #33CC33 url('../img/navigation_shine.png') no-repeat 0 0;
+            opacity: 1.0;
+        }
+
+        #navigation ul li img:nth-child(2) {
+            display: none;
+            border: none;
+            clear: both;
+            position: relative;
+            left: 25px;
+        }
+
+        #navigation ul li a:hover span {
+            display: block;
+            color: #848484;
+        }
+
+        #navigation ul li a span {
+            display: none;
+            font: normal 14px 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            padding: 20px;
+            float: left;
+        }
+
+     #navigation ul li a.current span{        
+        color: white;
+        display: block;                     
+    }
+
+#search {
+    float: right;
+    height: 60px;
+}
+
+    #search input {
+        width: 175px;
+        margin-top: 13px;
+        margin-right: 25px;
+        padding: 5px;
+        padding-left: 10px;        
+        font: normal 16px Segoe UI;
+        border-radius: 3px;
+        border: 1px solid #000000;
+        float:left;
+    }
+
+    #search span {
+        color: #ffffff;
+        margin-right: 10px;
+        font: normal 16px Segoe UI;
+        display: block;
+        float: left;
+        margin-top: 20px;
+    }
+
+
+header {
+    width: 100%;
+    background-color: #0C0D0D;
+    height: 60px;
+    margin-top: 80px;
+}
+
+#index {
+    padding-top: 10px;
+}
+
+    #index div {
+        background-color: #ffffff;
+        padding: 5px; 
+    }
+
+    #index div div:nth-child(1) {
+    background-position: left;
+    background-color: #000000;
+    background-image: url('../img/golfStock.png');
+    background-repeat: no-repeat;
+    height: 298px;
+}
+
+        #index div div:nth-child(1) span {
+            display: block;
+            float: right;
+            color: white;
+            margin-right: 15px;
+            font-family:Calibri;
+            letter-spacing: 1px;
+            width: 200px;
+        }
+
+    #index div div span h1{
+        font: bold 26px;        
+        letter-spacing: 2px;
+    }
+
+#social {
+    width: 100%;
+    color: white;
+    border-top: 1px solid #444444;
+    border-bottom: 1px solid #444444;
+}
+
+    #social tr:first-child td {
+        padding-top: 15px;
+    }
+
+    #social tr:last-child td {
+        padding-bottom: 15px;
+    }
+
+    #social td {
+        text-align: center;
+        width: 50px;
+    }
+
+#ranking {
+    padding-top: 10px;
+    height: auto;
+    display: none;
+}
+
+#news {
+    color: white;
+    margin-top: 20px;
+}
+
+    #news p {
+        margin: 0px;
+    }
+
+    #news h2 {
+        margin-top: 15px;
+    }
+
+.leftInnerContent {
+    width: 290px;    
+    float: left;
+}
+
+.rightInnerContent {
+    width: 295px;
+    float: left;
+    margin-left: 10px;
+}
+
+#map_canvas {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #e1e1e1;
+}
+
+.clubHomepage h2 {
+    color: #848484;
+}
+
+#review {    
+    width: 100%;    
+    display: none;
+    padding-top: 10px;
+}
+
+.outerFrame {
+    padding: 0px 0px 0px 0px;
+}
+
+.headerTitle {
+    width: 100%;
+    height: 33px;
+    background-image: url('../img/headerBg.png');
+    background-repeat: repeat-x;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    color: #ffffff;
+    font: bold 16px Arial, Verdana, sans-serif;
+    text-indent: 15px;
+    line-height: 33px;
+    letter-spacing: 2px;
+    border: 1px solid #1D771D;
+    border-bottom: 1px solid #134C13;    
+}
+
+.innerBody {
+    width: 100%;
+    min-height: 300px;
+    background-color: #f4f4f4;
+    border: 1px solid #E6E6E6;
+    border-top: 1px solid #ffffff;
+}
+
+.innerBodyDistance {
+    padding: 10px;  
+}
+
+.sectionDelimiter {
+    width: 100%;
+    height:1px;
+    border-top: 1px solid #DDDDD6;
+    background-color: #ffffff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/*Radio button-----------------------------------*/
+.radioButtons {
+    margin-left: 3px;
+}
+
+    .radioButtons button {
+        border: 1px solid #b1b1b1;
+        color: #a1a1a1;
+        padding: 5px 10px 5px 10px;
+        margin: -3px;
+        display: inline-block;
+        background-image: url('../img/buttonFade.png');
+        background-repeat: no-repeat;
+        background-color: #e1e1e1;        
+    }
+
+        .radioButtons button:hover {
+            background-color: #d1d1d1;    
+        }
+
+        .radioButtons button.selected {
+            background-color: #b1b1b1;    
+            background-image: none;
+            color: #ffffff;
+        }
+
+    .radioButtons button:first-child {
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+    }
+
+    .radioButtons button:last-child {
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
