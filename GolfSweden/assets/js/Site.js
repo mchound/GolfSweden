@@ -2,76 +2,71 @@
 
 $(function () {
     
-    var sections = [{ name: 'index' }, { name: 'ranking' }, { name: 'review' }, { name: 'trip' }, { name: 'info' }, { name: 'contact' }];
+    $('#navigation').tobNavigationJS();
+    PopulateReviewHeaderOnClubChange();
+    $.tobRadioButtonJS();
+    LoadClubData();
+    GetCoursesOnClubChange();
 
-    //Link clicked ------------------------------------------------
-    $('#navigation ul li').click(function (eventObject) {                
-        var idClicked = $(eventObject.delegateTarget).children('a').attr('id');
-        var sectionClicked = idClicked.replace('link_', '');
-        setLinkMenu(idClicked);
-        setSectionView(sectionClicked, sections);            
-        });
-    //-------------------------------------------------------------------------
-
-    //-----------------------------------------------------------------------
-    $('#rev_club').change(function () {
-        var clubName = $("select option:selected").text();
-        $('#review .headerTitle').text('Ny recension - ' + clubName);
-    });
-    //-----------------------------------------------------------------------
-
-    //Gender choose on new review-------------------------------------------
-    $('#genderRadio button').click(function (eventObject) {
-        $('#genderRadio button').removeClass('selected');        
-        $(eventObject.target).addClass('selected');
-    });
-    //---------------------------------------------------------------------
-
+    //Switch , for . in hcp input---------------------------------------------------------------------
     $('#hcp').change(function (eventObject) {
         var oldText = $('#hcp').val();
         var newText = oldText.replace(',', '.');
         $('#hcp').val(newText);
     });
-    
+
 });
 
-function setSectionView(sectionId, sectionCollection) {
-    
-    for (var i = 0; i < sectionCollection.length; i++) {
-        
-        var sectionName = sectionCollection[i].name;
-        var activeState = $('#' + sectionName).attr('active');
-
-        if (activeState === 'true') {
-            $('#' + sectionName).fadeOut('slow', function () {
-                $('#' + sectionName).attr('active', 'false');
-                $('#' + sectionId).slideDown('slow', function () {
-                    $('#' + sectionId).attr('active', 'true');
-                });
-            });
-            break;
-        }
-    }    
-
-    if (sectionId === 'club') {
-        initializeMap();
-    }    
+function GetCoursesOnClubChange(){
+    $('#rev_club').change(function () {
+        var clubId = $('#rev_club option:selected').attr('value');
+        var clubName = $('#rev_club option:selected').text();
+        $('#rev_courses').parent().removeClass('selectLoaded').addClass('selectLoading');
+        $('#rev_courses option:selected').text('Laddar banor för ' + clubName + '...');
+        $.ajax({
+            url: "http://localhost:50542/api/golf/?clubId=" + clubId
+        }).done(function (data) {
+            InitCoursesDropdown(data);
+        }).fail(function () {
+            alert("Failed loading courses");
+        });
+    });
 }
 
-function setLinkMenu(linkItemId) {
-    $.each($('#navigation ul li'), function (index, element) {
-            
-        var b = $(element).children('a')
+function LoadClubData(){
+    $.ajax({
+        url: "http://localhost:50542/api/golf",
+    }).done(function (clubs) {        
+        
+        $('#rev_club').parent().removeClass('selectLoading').addClass('selectLoaded');
+        $('#rev_club option:selected').text('- - - Välj golfklubb - - -');
+        $('#rev_homeClub').parent().removeClass('selectLoading').addClass('selectLoaded');
+        $('#rev_homeClub option:selected').text('- - - Välj din hemmaklubb - - -');
+        $.each(clubs, function (index, club) {
+            $('#rev_club').append('<option value=' + club.id + '>' + club.name + '</option>');
+            $('#rev_homeClub').append('<option value=' + club.id + '>' + club.name + '</option>');
+        });
 
-        if ($(b).attr('id') === linkItemId) {
-            $(element).children('a').addClass('current');
-            $(element).children('img').css('display', 'block');
-        }
-        else {                
-            $(element).children('a').removeClass('current');
-            $(element).children('img').css('display', 'none');                
-        }
+    }).fail(function () {
+        $('#rev_club').parent().removeClass('selectLoading').addClass('selectLoaded');
+        $('#rev_club option:selected').text(' - Kunde inte hämta klubbar från server -');
+        $('#rev_homeClub').parent().removeClass('selectLoading').addClass('selectLoaded');
+        $('#rev_homeClub option:selected').text(' - Kunde inte hämta klubbar från server -');
+    });
+}
 
+function PopulateReviewHeaderOnClubChange(){
+    $('#rev_club').change(function () {
+        var clubName = $("select option:selected").text();
+        $('#review .headerTitle').text('Ny recension - ' + clubName);
+    });
+}
+
+function InitCoursesDropdown(courses) {    
+    $('#rev_courses').parent().removeClass('selectLoading').addClass('selectLoaded');
+    $('#rev_courses option:selected').text('- - - Välj spelad bana - - -');
+    $.each(courses, function (index, course) {
+        $('#rev_courses').append('<option value=' + course.id + '>' + course.name + '</option>');
     });
 }
 

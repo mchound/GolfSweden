@@ -40,6 +40,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -125,13 +127,41 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GolfController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Data\DatabaseModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatabaseModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\bootstrap.css" />
+    <Content Include="assets\css\Site.css" />
+    <Content Include="assets\css\TobPlugins.css" />
+    <Content Include="assets\img\ajax-loader.gif" />
+    <Content Include="assets\img\arrow_current.png" />
+    <Content Include="assets\img\bg_main.jpg" />
+    <Content Include="assets\img\buttonFade.png" />
+    <Content Include="assets\img\contact.png" />
+    <Content Include="assets\img\facebook.png" />
+    <Content Include="assets\img\golfBall.png" />
+    <Content Include="assets\img\golfStock.png" />
+    <Content Include="assets\img\headerBg.png" />
+    <Content Include="assets\img\info.png" />
+    <Content Include="assets\img\navigation_shine.png" />
+    <Content Include="assets\img\pencil.png" />
+    <Content Include="assets\img\ranking.png" />
+    <Content Include="assets\img\rss.png" />
+    <Content Include="assets\img\stripes.png" />
+    <Content Include="assets\img\trip.png" />
+    <Content Include="assets\img\twitter.png" />
+    <Content Include="assets\js\Site.js" />
+    <Content Include="assets\js\TobPlugins.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -172,6 +202,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Review.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Data\DatabaseModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DatabaseModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

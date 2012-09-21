@@ -28,6 +28,45 @@ select {
     color: #8D8D8D;
 }
 
+input[type="text"]
+{
+    padding: 5px;   
+    min-width: 200px;
+}
+
+.selectLoading select
+{
+    padding-left: 30px;
+}
+
+.selectLoading img
+{
+    display: block;
+    clear: left;
+    position: relative;
+    top: -20px;
+    left: 10px;
+}
+
+.selectLoaded select
+{
+    padding-left: 5px;
+}
+
+.selectLoaded img
+{
+    display: none;
+}
+
+textarea
+{
+    padding:5px;
+    font: normal 14px Segoe UI;
+    background-color: #fcfcfc;
+    border: 1px solid #e1e1e1;
+    color: #8D8D8D;
+}
+
 /*------------- Button---------------------*/
 button {
     font: normal 16px Segoe UI;
@@ -69,55 +108,6 @@ button {
     padding-top: 10px;
 }
 
-#navigation ul {
-    height: 60px;
-    list-style: none;
-    padding: 0;
-    margin: 0px;
-    margin-left: -10px;
-    float: left;
-}
-
-    #navigation ul li {
-        float: left;                  
-    }
-
-    #navigation ul li a img:nth-child(1){
-        opacity: 0.5;
-        float: left;        
-        border: none;
-    }
-
-        #navigation ul li a.current img:nth-child(1), #navigation ul li a:hover img:nth-child(1)  {
-            background: #33CC33 url('../img/navigation_shine.png') no-repeat 0 0;
-            opacity: 1.0;
-        }
-
-        #navigation ul li img:nth-child(2) {
-            display: none;
-            border: none;
-            clear: both;
-            position: relative;
-            left: 25px;
-        }
-
-        #navigation ul li a:hover span {
-            display: block;
-            color: #848484;
-        }
-
-        #navigation ul li a span {
-            display: none;
-            font: normal 14px 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            padding: 20px;
-            float: left;
-        }
-
-     #navigation ul li a.current span{        
-        color: white;
-        display: block;                     
-    }
-
 #search {
     float: right;
     height: 60px;
@@ -126,7 +116,7 @@ button {
     #search input {
         width: 175px;
         margin-top: 13px;
-        margin-right: 25px;
+        margin-right: 5px;
         padding: 5px;
         padding-left: 10px;        
         font: normal 16px Segoe UI;
@@ -291,38 +281,9 @@ header {
     margin-bottom: 10px;
 }
 
-/*Radio button-----------------------------------*/
-.radioButtons {
-    margin-left: 3px;
+
+    
+.reviewTextarea
+{
+    width: 200px;
 }
-
-    .radioButtons button {
-        border: 1px solid #b1b1b1;
-        color: #a1a1a1;
-        padding: 5px 10px 5px 10px;
-        margin: -3px;
-        display: inline-block;
-        background-image: url('../img/buttonFade.png');
-        background-repeat: no-repeat;
-        background-color: #e1e1e1;        
-    }
-
-        .radioButtons button:hover {
-            background-color: #d1d1d1;    
-        }
-
-        .radioButtons button.selected {
-            background-color: #b1b1b1;    
-            background-image: none;
-            color: #ffffff;
-        }
-
-    .radioButtons button:first-child {
-        border-top-left-radius: 3px;
-        border-bottom-left-radius: 3px;
-    }
-
-    .radioButtons button:last-child {
-        border-top-right-radius: 3px;
-        border-bottom-right-radius: 3px;
-    }

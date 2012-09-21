@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GolfSwedenModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="GolfSwedenModelStoreContainer">
+          <EntitySet Name="Clubs" EntityType="GolfSwedenModel.Store.Clubs" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Courses" EntityType="GolfSwedenModel.Store.Courses" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Courses_Clubs" Association="GolfSwedenModel.Store.FK_Courses_Clubs">
+            <End Role="Clubs" EntitySet="Clubs" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Clubs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="MapLat" Type="varchar" MaxLength="50" />
+          <Property Name="MapLng" Type="varchar" MaxLength="50" />
+          <Property Name="Drivingrange" Type="bit" />
+          <Property Name="Homepage" Type="varchar" MaxLength="50" />
+          <Property Name="Pay_n_play" Type="bit" />
+          <Property Name="Restaurant" Type="bit" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Club_id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Number_of_holes" Type="int" />
+          <Property Name="Par" Type="int" />
+        </EntityType>
+        <Association Name="FK_Courses_Clubs">
+          <End Role="Clubs" Type="GolfSwedenModel.Store.Clubs" Multiplicity="1" />
+          <End Role="Courses" Type="GolfSwedenModel.Store.Courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clubs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="Club_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GolfSwedenModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="GolfSwedenEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clubs" EntityType="GolfSwedenModel.Clubs" />
+          <EntitySet Name="Courses" EntityType="GolfSwedenModel.Courses" />
+          <AssociationSet Name="FK_Courses_Clubs" Association="GolfSwedenModel.FK_Courses_Clubs">
+            <End Role="Clubs" EntitySet="Clubs" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Clubs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="MapLat" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="MapLng" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Drivingrange" Type="Boolean" />
+          <Property Name="Homepage" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Pay_n_play" Type="Boolean" />
+          <Property Name="Restaurant" Type="Boolean" />
+          <NavigationProperty Name="Courses" Relationship="GolfSwedenModel.FK_Courses_Clubs" FromRole="Clubs" ToRole="Courses" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Club_id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Number_of_holes" Type="Int32" />
+          <Property Name="Par" Type="Int32" />
+          <NavigationProperty Name="Clubs" Relationship="GolfSwedenModel.FK_Courses_Clubs" FromRole="Courses" ToRole="Clubs" />
+        </EntityType>
+        <Association Name="FK_Courses_Clubs">
+          <End Role="Clubs" Type="GolfSwedenModel.Clubs" Multiplicity="1" />
+          <End Role="Courses" Type="GolfSwedenModel.Courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clubs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="Club_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GolfSwedenModelStoreContainer" CdmEntityContainer="GolfSwedenEntities">
+          <EntitySetMapping Name="Clubs"><EntityTypeMapping TypeName="GolfSwedenModel.Clubs"><MappingFragment StoreEntitySet="Clubs">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="MapLat" ColumnName="MapLat" />
+            <ScalarProperty Name="MapLng" ColumnName="MapLng" />
+            <ScalarProperty Name="Drivingrange" ColumnName="Drivingrange" />
+            <ScalarProperty Name="Homepage" ColumnName="Homepage" />
+            <ScalarProperty Name="Pay_n_play" ColumnName="Pay_n_play" />
+            <ScalarProperty Name="Restaurant" ColumnName="Restaurant" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Courses"><EntityTypeMapping TypeName="GolfSwedenModel.Courses"><MappingFragment StoreEntitySet="Courses">
+            <ScalarProperty Name="Id" ColumnName="id" />
+            <ScalarProperty Name="Club_id" ColumnName="Club_id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Number_of_holes" ColumnName="Number_of_holes" />
+            <ScalarProperty Name="Par" ColumnName="Par" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="DatabaseModel">
+        <EntityTypeShape EntityType="GolfSwedenModel.Clubs" Width="1.5" PointX="0.75" PointY="1" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="GolfSwedenModel.Courses" Width="1.5" PointX="3" PointY="1.25" Height="2.1725878906249996" IsExpanded="true" />
+        <AssociationConnector Association="GolfSwedenModel.FK_Courses_Clubs" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.3362939453125" />
+          <ConnectorPoint PointX="3" PointY="2.3362939453125" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
